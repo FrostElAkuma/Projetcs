@@ -1,0 +1,37 @@
+textarea {
+    min-height: 400px;
+}
+
+#emails-view div {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.emailDiv {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+#inside-mail-view {
+    margin-top: 2rem;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.space {
+    word-spacing: 30px;
+}
+
+#mail {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}

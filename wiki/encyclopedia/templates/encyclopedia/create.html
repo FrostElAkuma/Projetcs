@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create Entry 
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+
+        {% if flag %}
+            <h1>{{ title }}</h1>
+        {% elif error == 1 %}
+            <div class="alert alert-danger" role="alert">
+                Entry already exists
+            </div>
+        {% elif error == 2 %}
+            <div class="alert alert-danger" role="alert">
+                invalid submission
+            </div>
+        {% endif %}
+        
+        {{ form }}
+        <input class="btn btn-primary mt-3" type="submit" value="Save">
+    </form>
+{% endblock %}

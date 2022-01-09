@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <h2 style="text-align: center;">My Watchlist:</h2>
+
+    {% for listing in list %}
+        
+            <div class="container-md my-5">
+                <a href="/{{ listing.id }}">
+                    <div class="row my-5">
+                        <div class=" p-0 col-lg-4 col-md-6 col-7">
+                            <img src="{{ listing.image }}" alt="image" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <h3>{{ listing.title }}</h3>
+                            <p style="overflow-y: hidden; height: 80px;"><strong>Description: </strong>{{ listing.description }}</p>
+                            <p><strong>Starting Price: </strong>{{ listing.startPrice }}</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="row my-5">
+                    <a href ="{% url 'editWatch' listing.id 2 %}">
+                        <button type="button" class="btn btn-danger">Remove from watchlist</button>
+                    </a>
+                </div>
+            </div>
+        
+    {% empty %}
+    <p style="text-align: center;">You have nothing on your watchlist..</p>
+    {% endfor %}
+
+{% endblock %}

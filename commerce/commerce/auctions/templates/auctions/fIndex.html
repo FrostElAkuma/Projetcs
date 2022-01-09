@@ -1,0 +1,57 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>{{ this }}</h1>
+    <h2 style="text-align: center;">Active Listings:</h2>
+
+    {% if user.is_authenticated %}
+        {% for listing in listings %}
+            <a href="/{{ listing.id }}">
+                <div class="container-md my-5">
+                    <div class="row my-5">
+                        <div class=" p-0 col-lg-4 col-md-6 col-7">
+                            <img src="{{ listing.image }}" alt="image" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <h3>{{ listing.title }}</h3>
+                            <p style="overflow-y: hidden; height: 80px;"><strong>Description: </strong>{{ listing.description }}</p>
+                            <p><strong>Starting Price: </strong>{{ listing.startPrice }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p style="text-align: center;">No Active Listings Yet...</p>
+        {% endfor %}
+    
+    {% else %}
+        
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="text-align: center; width: 900px;" class="alert alert-primary" role="alert">
+                Please Login in order to view the full details of the listings
+            </div>
+        </div>
+
+        {% for listing in listings %}
+
+            <a href="">
+                <div class="container-md my-5">
+                    <div class="row my-5">
+                        <div class=" p-0 col-lg-4 col-md-6 col-7">
+                            <img src="{{ listing.image }}" alt="image" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <h3>{{ listing.title }}</h3>
+                            <p style="overflow-y: hidden; height: 80px;"><strong>Description: </strong>{{ listing.description }}</p>
+                            <p><strong>Starting Price: </strong>{{ listing.startPrice }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p style="text-align: center;">No Active Listings Yet...</p>
+        {% endfor %}
+
+    {% endif %}
+        
+{% endblock %}

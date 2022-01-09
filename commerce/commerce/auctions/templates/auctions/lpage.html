@@ -1,0 +1,93 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% if listing.active == False %}
+        {% if listing.winner == user%}
+            <div class="alert alert-success" role="alert">
+                {{ user }} you have won the auction !
+            </div>
+        {% else%}
+            <div class="alert alert-success" role="alert">
+                {{ listing.winner }} have won the auction !
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="container-md my-5">
+        <div class="row my-5">
+            <div class=" p-0 col-lg-4 col-md-6 col-7">
+                <img src="{{ listing.image }}" alt="responsive image" class="img-fluid">
+            </div>
+            <div class="col">
+                <h2>{{ listing.title }}</h2>
+                <p style="overflow-y: hidden; height: 80px;"><strong>Description: </strong>{{ listing.description }}</p>
+                <p><strong>Starting Price: </strong>{{ listing.startPrice }}</p>
+                <p><strong>Current Bid: </strong>{{ listing.currentBid }}</p>
+
+                {% if user.is_authenticated %}
+
+                    {% if watch %}
+                    <a href ="{% url 'editWatch' listing.id 1 %}">
+                        <button type="button" class="btn btn-danger">Remove from watchlist</button>
+                    </a>
+                    {% else %}
+                        <a href ="{% url 'editWatch' listing.id 1 %}">
+                            <input class="btn btn-primary" type="submit" value="Add to Watchlist">
+                        </a>
+                    {% endif %}
+                    
+                    <form action="{% url 'listing_page' listing.id %}" method="post">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            {{ form.bidAmount }}
+                        </div>
+
+                        <div class="form-group">
+                            <input class="btn btn-primary" type="submit" value="submit">
+                        </div>
+                    </form>
+
+                    {% if deactivate %}
+                        <a href ="{% url 'deactivate' listing.id %}">
+                            <input class="btn btn-danger" type="submit" value="Deactivate Listing">
+                        </a>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+                    <div class="container-md my-5">
+                        <div class="row my-3">
+                            <div class="col">
+                                <form action="{% url 'commento' listing.id %}" method="post">
+                                    {% csrf_token %}
+            
+                                    <div class="form-group">
+                                        {{ commentForm.commento }}
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <input class="btn btn-primary" type="submit" value="Comment">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                            <h4>Comments:</h4>
+                            {% for comment in allComments %}
+                                <div class="row my-2">
+                                    <div class="col">
+                                        <div class="img-thumbnail">
+                                            <h5>{{ comment.commentor }}</h5>
+                                            <p style="text-indent: 0px">{{ comment.commento }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        
+                    </div>
+                        
+                {% endif%}
+
+           
+
+{% endblock %}
