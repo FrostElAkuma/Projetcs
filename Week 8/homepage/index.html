@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!-- What is good about bootstrap is that its navbar becomes a drop down thing on phone and its auto responsive.
+you can style any other thing yourself but you can keep the responsisivness to bootstrap-->
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- My CSS -->
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- Fonts awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+
+    <title>My Webpage</title>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- My JS and some jqury-->
+    <script>
+
+      document.addEventListener('DOMContentLoaded',  function() {
+        document.querySelector('#expand').addEventListener('mouseover', function() {
+			        let expand = document.querySelector('hr');
+			        expand.style.width = "100%";
+          });
+			  document.querySelector('#expand').addEventListener('mouseout', function() {
+			        let expand = document.querySelector('hr');
+			        expand.style.width = "50%";
+			    });
+
+			  /*document.getElementById("all").addEventListener("click", function() {
+              let showo = document.getElementById("hidden");
+              showo.style.display = "";
+			    });*/
+
+        });
+
+    //Jquery
+
+    $(document).ready(function(){
+      $("#all").click(function(){
+        $("#hidden").removeClass('d-none');
+        $("#all").addClass('d-none');
+      });
+    });
+
+    </script>
+  </head>
+  <body>
+
+
+    <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light-red" data-toggle="affix" style="background-color: #ff3333;">
+        <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+            <a class="navbar-brand" href="#">Brand</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse  text-center" id="navbarsExample11">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#welcome-section">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="welcome-section">
+      <br><br>
+      <h1>Hello I am Frost</h1>
+      <p class="p1"> <i>a we<del>e</del>b developer</i></p>
+      <br>
+      <div id="rect">UwU</div>
+    </section>
+
+
+    <section id="projects">
+      <br><br>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div id="expand" class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <h2>Here are some of my smaller projects</h2>
+            <hr class="hr1">
+          </div>
+        </div>
+
+
+        <br><br><br><br>
+
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <a
+             href="index1.html"
+             target="_blank"
+             class="link1">
+            <img
+                class="link-image img-fluid" src="https://i.pinimg.com/originals/cd/7b/5c/cd7b5c8d4687b5c98a445127926a56e2.jpg"
+                alt="project"
+              />
+                <p class="project-tile">
+                  <span class="code">&lt;</span>
+                  JS Documentation
+                  <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <a
+             href="index2.html"
+             target="_blank"
+             class="link1">
+            <img
+                class="link-image img-fluid" src="https://i.pinimg.com/originals/cd/7b/5c/cd7b5c8d4687b5c98a445127926a56e2.jpg"
+                alt="project"
+              />
+                <p class="project-tile">
+                  <span class="code">&lt;</span>
+                  Burgers ?
+                  <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <a
+             href="index3.html"
+             target="_blank"
+             class="link1">
+            <img
+                class="link-image img-fluid" src="https://i.pinimg.com/originals/cd/7b/5c/cd7b5c8d4687b5c98a445127926a56e2.jpg"
+                alt="project"
+              />
+                <p class="project-tile">
+                  <span class="code">&lt;</span>
+                  Old project for a course
+                  <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+          </div>
+        </div>
+
+
+        <br><br><br><br>
+
+
+        <div id="hidden" class="d-none row justify-content-center">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <a
+             href="#"
+             target="_blank"
+             class="link1">
+            <img
+                class="link-image img-fluid" src="https://i.pinimg.com/originals/cd/7b/5c/cd7b5c8d4687b5c98a445127926a56e2.jpg"
+                alt="project"
+              />
+                <p class="project-tile">
+                  <span class="code">&lt;</span>
+                  Coming Soon
+                  <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <a
+             href="#"
+             target="_blank"
+             class="link1">
+            <img
+                class="link-image img-fluid" src="https://i.pinimg.com/originals/cd/7b/5c/cd7b5c8d4687b5c98a445127926a56e2.jpg"
+                alt="project"
+              />
+                <p class="project-tile">
+                  <span class="code">&lt;</span>
+                  Coming Soon
+                  <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <a
+             href="#"
+             target="_blank"
+             class="link1">
+            <img
+                class="link-image img-fluid" src="https://i.pinimg.com/originals/cd/7b/5c/cd7b5c8d4687b5c98a445127926a56e2.jpg"
+                alt="project"
+              />
+                <p class="project-tile">
+                  <span class="code">&lt;</span>
+                  Coming Soon
+                  <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <br><br>
+
+
+      <div class="center1">
+        <button id="all" type="button" class="bobo">ShOwO all <i class="fas fa-chevron-right"></i></button>
+      </div>
+
+      <br><br><br><br>
+
+    </section>
+
+
+      <section id="contact">
+        <div class="container">
+          <br><br><br><br>
+          <h3>Let's do our best!</h3>
+          <p class="owo"> <i>2 months from now on you better have a proffesional portfolio</i></p>
+
+          <br><br>
+
+          <div class="contact-links">
+            <a href="#" target="_blank"
+               class="uwu"> <i class="fas fa-paw"></i> Coming Soon</a>
+
+            <a href="#" target="_blank"
+               class="uwu"> <i class="fas fa-kiwi-bird"></i> Coming Soon</a>
+
+            <a href="#" target="_blank"
+               class="uwu"> <i class="fas fa-dragon"></i> Coming Soon</a>
+
+            <a href="#" target="_blank"
+               class="uwu"> <i class="fas fa-cat"></i> Coming Soon</a>
+
+          </div>
+        </div>
+        <br><br>
+      </section>
+
+
+      <hr style=" padding:0; margin:0; height:3px; background-color: #ff3333; border-style:none;">
+
+      <footer>
+        <div class="container">
+          <br><br>
+          <p>
+          **Planning to make the most beautiful portfolio this is just a start to get familiar with Jquery, bootsrap, Js, HTML, CSS <br> This website has a very basic website design nothing intresting, check Wordpress ?
+        </p>
+          <br>
+        <p>
+          &copy; Abdullah Ziad Created for CS50 Course 2021
+          </p>
+          <br><br>
+        </div >
+      </footer>
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </body>
+</html>

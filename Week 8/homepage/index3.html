@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+
+<style>
+
+    body {
+  background-image: url("https://webbfontaine.com/wp-content/uploads/2019/10/contactusheader.jpg");
+ font-family:sans-serif;
+  background-size: cover;
+}
+
+#title {
+  text-align: center;
+}
+
+#description {
+  text-align: center;
+  font-size: 19px;
+}
+
+#survey-form {
+  background-color: rgba(255, 0, 0, 0.4);
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 3px;
+}
+
+#name {
+  margin-top:1%;
+  margin-left:9%;
+  width: 80%;
+  height:30px;
+border-radius: 3px;
+border: none;
+}
+
+#email {
+  margin-top:1%;
+  margin-left:9%;
+  width: 80%;
+  height:30px;
+border-radius: 3px;
+border: none;
+}
+
+#number {
+  margin-top:1%;
+  margin-left:9%;
+  width: 80%;
+  height:30px;
+border-radius: 3px;
+border: none;
+}
+
+#name-label {
+  margin-left:9%;
+  color: #fff;
+}
+
+#email-label {
+  margin-left:9%;
+  color: #fff;
+}
+
+#number-label {
+  margin-left:9%;
+  color: #fff;
+}
+
+#dropdown-label {
+  margin-left:9%;
+  color: #fff;
+}
+
+#dropdown {
+ margin-top:1%;
+  margin-left:9%;
+  width: 80%;
+  height:30px;
+border-radius: 3px;
+border: none;
+}
+
+#rd-label {
+  margin-left:9%;
+  color: #fff;
+}
+
+#rd {
+  margin-top:1%;
+  margin-left:9%;
+  border: none;
+  color: #fff;
+}
+
+#form-control {
+margin-top:1%;
+  margin-left:9%;
+  width: 80%;
+  height:90px;
+border-radius: 1px;
+border: none;
+}
+
+#msg {
+  margin-left:9%;
+  color: #fff;
+}
+
+#submit {
+  margin-left:9%;
+  width: 80%;
+  height:30px;
+border-radius: 3px;
+border: none;
+  background-color: orange;
+  color: #fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <h1 id="title">freeCodeCamp Survey Form </h1>
+  <p id="description"><i>Thank you for taking the time to help us improve the platform </i></p>
+
+  <form id="survey-form">
+ <br><br>
+
+    <label for="name" id="name-label">Name</label>
+    <br>
+   <input name="name" type="text" id="name" placeholder="   Your Name" required>
+    <br><br><br>
+     <label for="name" id="email-label">Email</label>
+    <br>
+    <input name="email" type="email" id="email" placeholder="   Your Email" required>
+    <br><br><br>
+    <label for="name" id="number-label">Age <small> (optional) </small></label>
+    <br>
+    <input name="number" type="number" id="number" placeholder="   Your Email" min="-10" max="10" required>
+
+    <br><br><br>
+
+    <label for="cars" id="dropdown-label">What is your favorite feature of freeCodeCamp?</label>
+<br>
+<select name="cars" id="dropdown">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+  <br><br><br>
+
+    <label id="rd-label"> What would you like to see improved? <small> (Check all that apply) </small>
+    <br>
+  <input type="checkbox" name="rd" value="Definitely"id="rd" checked>Definitely<br>
+  <input type="checkbox" name="rd" value="Not sure" id="rd">Not sure<br>
+  <input type="checkbox" name="rd" value="Maybe" id="rd">Maybe<br>
+</label>
+    <br><br>
+
+    <label for="message" id="msg"> Any comments or suggestions? </label>
+
+     <textarea name="message" id="form-control" placeholder=" Message..." rows="4" required></textarea>
+
+    <br><br>
+
+    <button type="submit" id="submit">Submit</button>
+
+    <br><br><br><br>
+
+  </form>
+
+</body>
+
+</html>

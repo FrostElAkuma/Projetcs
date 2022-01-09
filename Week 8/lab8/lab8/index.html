@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+            // TODO: Add code to check answers to questions
+            document.addEventListener('DOMContentLoaded',  function() {
+                let button1 = document.querySelector('.r');
+                let answer1 = document.querySelector('.si1');
+                let answer2 = document.querySelector('.si2');
+                document.querySelector('.r').onclick = function() {
+	                button1.style.backgroundColor = 'red';
+	                answer1.style.display = 'inline-block';
+	                answer2.style.display = 'none';
+                    };
+
+                let button2 = document.querySelector('.g');
+
+                document.querySelector('.g').onclick = function() {
+	                button2.style.backgroundColor = 'green';
+	                answer2.style.display = 'inline-block';
+	                answer1.style.display = 'none';
+                    };
+
+                let button3 = document.querySelector('.r1');
+                document.querySelector('.r1').onclick = function() {
+	                button3.style.backgroundColor = 'red';
+	                answer1.style.display = 'inline-block';
+	                answer2.style.display = 'none';
+                    };
+
+                let button4 = document.querySelector('.r2');
+                document.querySelector('.r2').onclick = function() {
+	                button4.style.backgroundColor = 'red';
+	                answer1.style.display = 'inline-block';
+	                answer2.style.display = 'none';
+                    };
+
+                let button5 = document.querySelector('.r3');
+                document.querySelector('.r3').onclick = function() {
+	                button5.style.backgroundColor = 'red';
+	                answer1.style.display = 'inline-block';
+	                answer2.style.display = 'none';
+                    };
+
+                document.querySelector('form').addEventListener('submit', function() {
+			        let r6 = document.querySelector('#R6').value;
+			        let answer3 = document.querySelector('.yes');
+                    let answer4 = document.querySelector('.no');
+			        if (r6.toUpperCase() == "FROST")
+			        {
+                        answer3.style.display = 'inline-block';
+	                    answer4.style.display = 'none';
+			        }
+			        else
+			        {
+			            answer4.style.display = 'inline-block';
+	                    answer3.style.display = 'none';
+			        }
+			    });
+
+
+            });
+
+
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Who is the best charachter in R6 ?</h3>
+
+                <ul>
+                    <li class = "si1">Incorrect</li>
+                    <li class = "si1">Incorrect</li>
+                    <li class = "si1">Incorrect</li>
+                    <li class = "si2">Correct!</li>
+                    <li class = "si1">Incorrect</li>
+                </ul>
+
+                <button class = "r">Black Beard</button>
+                <button class = "r1">Ela</button>
+                <button class = "r2">Waifu Tachanka</button>
+                <button class = "g">Frost</button>
+                <button class = "r3">Fuze</button>
+
+
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+
+                <h3>AGAIN Who is the best charachter in R6 ?</h3>
+
+                <ul>
+                    <li class = "yes">Correct!</li>
+                    <li class = "no">Incorrect</li>
+                </ul>
+
+                <form onsubmit="return false; ">
+	                <input id="R6" autocomplete="off" type="text">
+	                <input type="submit" value = "Check Answer">
+                </form>
+
+            </div>
+
+        </div>
+    </body>
+</html>

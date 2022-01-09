@@ -1,0 +1,256 @@
+#include "helpers.h"
+#include <math.h>
+#include <stdio.h>
+
+// Convert image to grayscale
+void grayscale(int height, int width, RGBTRIPLE image[height][width])
+{
+    //Looping over every pixel in an image (hopefully)
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            //Resetting the average for each loop
+            float average = 0;
+            //Getting the average
+            average += (image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue) / 3.00;
+            //Assigning the rounded average to each rgb in a pixel
+            image[i][j].rgbtRed = round(average);
+            image[i][j].rgbtGreen = round(average);
+            image[i][j].rgbtBlue = round(average);
+        }
+    }
+    return;
+}
+
+// Reflect image horizontally
+void reflect(int height, int width, RGBTRIPLE image[height][width])
+{
+    for (int i = 0; i < height; i++)
+    {
+        //Dividing the row into 2 equal parts
+        for(int j = 0, n = width / 2; j < n ; j++)
+        {
+            //saving the variable that we will switch first
+            RGBTRIPLE save = image[i][j];
+            //swapping both values
+            image[i][j] = image[i][width - j - 1];
+            image[i][width - j - 1] = save;
+        }
+    }
+    return;
+}
+
+// Blur image
+void blur(int height, int width, RGBTRIPLE image[height][width])
+{
+    //Saving the original image
+    RGBTRIPLE original_save[height][width];
+    for(int i = 0; i < height; i++)
+    {
+        for(int j = 0; j < width; j++)
+        {
+            original_save[i][j] = image[i][j];
+        }
+    }
+    //Looping over every pixel
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            //Average color value for each pixel. It resets for every pixel as well
+            float aR = 0;
+            float aB = 0;
+            float aG = 0;
+            float total = 0;
+            /*row start, row end, column start and column end. Since some positions like the first pixel has
+            diffrent calculations*/
+            int r = 1, rEnd = 1, c = 1, cEnd = 1;
+            //Frist pixel
+            if (i == 0 && j == 0)
+            {
+                r = 0;
+                c = 0;
+            }
+            //Last pixel of the first row
+            else if (i == 0 && j == width - 1)
+            {
+                r = 0;
+                c = -1;
+                cEnd = 0;
+            }
+            //Any pixel in the first row
+            else if (i == 0)
+            {
+                r = 0;
+                c = -1;
+            }
+            //First pixel of the last row
+            else if (j == 0 && i == height - 1)
+            {
+                r = -1;
+                rEnd = 0;
+                c = 0;
+            }
+            //Last pixel in the Last row and column
+            else if (j == width - 1  && i == height - 1)
+            {
+                r = -1;
+                rEnd = 0;
+                c = -1;
+                cEnd = 0;
+            }
+            //Any pixel in the first column
+            else if (j == 0)
+            {
+                r = -1;
+                c = 0;
+            }
+            //Any pixel in the last column
+            else if (j == width - 1)
+            {
+                r = -1;
+                c = -1;
+                cEnd = 0;
+            }
+            //Any pixel in the last row
+            else if (i == height - 1)
+            {
+                r = -1;
+                rEnd = 0;
+                c = -1;
+            }
+            //Any other pixel wich should be in the middle
+            else
+            {
+                r = -1;
+                c = -1;
+            }
+            //A loop that loops over the pixels around the main pixel based on its position
+            for (int t = r; t <= rEnd; t++)
+            {
+                for(int z = c; z <= cEnd; z++)
+                {
+                    //Adding the color values for each pixel
+                    aR += original_save[i + t][j + z].rgbtRed;
+                    aG += original_save[i + t][j + z].rgbtGreen;
+                    aB += original_save[i + t][j + z].rgbtBlue;
+                    total++;
+                }
+            }
+
+            aR = aR / total;
+            aG = aG / total;
+            aB = aB / total;
+
+            image[i][j].rgbtRed = round(aR);
+            image[i][j].rgbtGreen = round(aG);
+            image[i][j].rgbtBlue = round(aB);
+
+        }
+    }
+    return;
+}
+
+// Detect edges
+void edges(int height, int width, RGBTRIPLE image[height][width])
+{
+
+    //Saving the original image
+    RGBTRIPLE original_save[height][width];
+    for(int i = 0; i < height; i++)
+    {
+        for(int j = 0; j < width; j++)
+        {
+            //Saving a copy of the original image without any problems hopefully
+            original_save[i][j] = image[i][j];
+        }
+    }
+
+    //Looping over every pixel
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            //Declaring the varibales that i will use and resseting them for each pixel / loop
+            int gx[3][3] = {{-1, 0, 1},
+                            {-2, 0, 2},
+                            {-1, 0, 1}};
+
+            int gy[3][3] = {{-1, -2, -1},
+                            {0, 0, 0},
+                            {1, 2, 1}};
+
+            float gxR = 0;
+            float gxB = 0;
+            float gxG = 0;
+
+            float gyR = 0;
+            float gyB = 0;
+            float gyG = 0;
+
+            float gRTotal = 0;
+            float gGTotal = 0;
+            float gBTotal = 0;
+            //Resseting the row for each new pixel
+            int y = 0;
+
+            //A loop that loops over the pixels around the pixel in the center
+            for (int t = i - 1; t <= i + 1; t++)
+            {
+                //Resseting the column for each row
+                int x = 0;
+
+                for(int z = j - 1; z <= j + 1; z++)
+                {
+
+                    if (t == -1 || t == height || z == - 1 || z == width) 
+                    {
+                        x++;
+                    }
+
+                    else
+                    {
+                        //getting the gx and gy value for each pixel
+                        gxR += (original_save[t][z].rgbtRed) * gx[y][x];
+                        gxG += (original_save[t][z].rgbtGreen) * gx[y][x];
+                        gxB += (original_save[t][z].rgbtBlue) * gx[y][x];
+
+                        gyR += (original_save[t][z].rgbtRed) * gy[y][x];
+                        gyG += (original_save[t][z].rgbtGreen) * gy[y][x];
+                        gyB += (original_save[t][z].rgbtBlue) * gy[y][x];
+                        x++;
+                    }
+                }
+                y++;
+            }
+            
+            //Getting the final value as a posotive integer
+            gRTotal = round(sqrt((pow(gxR, 2)) + (pow(gyR, 2))));
+            gGTotal = round(sqrt((pow(gxG, 2)) + (pow(gyG, 2))));
+            gBTotal = round(sqrt((pow(gxB, 2)) + (pow(gyB, 2))));
+
+            //Capping the color values at 255
+            if (gRTotal > 255)
+            {
+                gRTotal  = 255;
+            }
+
+            if (gGTotal > 255)
+            {
+                gGTotal = 255;
+            }
+
+            if (gBTotal > 255)
+            {
+                gBTotal = 255;
+            }
+
+            image[i][j].rgbtRed = gRTotal;
+            image[i][j].rgbtGreen = gGTotal;
+            image[i][j].rgbtBlue = gBTotal;
+
+        }
+    }
+    return;
+}
